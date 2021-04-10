@@ -1,0 +1,37 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Disciplines{% endblock %}
+
+{% block content %}
+<div class="col-12"><a href="{{ path('admin_discipline_new') }}" class="btn btn-outline-primary mb-3">Create new</a></div>
+
+
+<div class="m-auto shadow p-3">
+    <table class="table m-3">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Niveau</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for discipline in disciplines %}
+            <tr>
+                <td>{{ discipline.titre }}</td>
+                <td>{{ discipline.niveau }}</td>
+                <td>
+                    <a href="{{ path('admin_discipline_show', {'id': discipline.id}) }}"><span class="fa fa-eye mr-3"></span></a>
+                    <a href="{{ path('admin_discipline_edit', {'id': discipline.id}) }}"><span class="fa fa-edit"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

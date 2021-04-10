@@ -1,0 +1,201 @@
+{% extends 'teacher/base.html.twig' %}
+
+{% block title %}LearningRooms{% endblock %}
+
+{% block content %}
+
+
+            <div class="col ">
+                <div class="row justify-content-around">
+                    <div class="col text-center m-3">
+                        <a href="{{ path('teacher_learning_rooms_new')}}" class="btn btn-success btn-lg m-auto p-3"><span
+                                    class="material-icons">cast_for_education</span><br>MasterClass </a>
+                    </div>
+                    <div class="col text-center m-3">
+                        <a href="addEleves.html" class="btn btn-success btn-lg m-auto p-3"><span
+                                    class="material-icons">group_add</span><br> Add Eleves</a>
+                    </div>
+
+                    <div class=" p-5">
+                        <div class="table-responsive-md border rounded p-3 m-auto row align-self-center bg-light">
+                            <table class="table table-bordered text-center ">
+                                <h3>Connectez-vous a votre Masterclass</h3>
+                                {% for masterclass in masterclasses%}
+                                    {% if masterclass.heuredebut|date("d/m/Y") == 'now'|date("d/m/Y") %}
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Masterclass</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Début</th>
+                                            <th scope="col">Fin</th>
+                                            <th scope="col">Discipline</th>
+                                            <th scope="col">Niveau</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <tr>
+                                            <td><a href="{{ path('teacher_learning_rooms_show', {'id': masterclass.id}) }}">{{ masterclass.titre }}</a></td>
+                                            <td>{{ masterclass.heuredebut|date("d/m/Y") }}</td>
+                                            <td>{{ masterclass.heuredebut|date('H:i') }}</td>
+                                            <td>{{ masterclass.heurefin|date('H:i') }}</td>
+                                            <td>{{ masterclass.discipline.titre}}</td>
+                                            <td>{{ masterclass.discipline.niveau}}</td>
+                                            <td><a href="{{ path('teacher_learning_rooms_edit', {'id': masterclass.id}) }}" class="btn btn-sm btn-outline-primary">Connectez-vous</a></td>
+                                        </tr>
+
+
+                                        </tbody>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
+                           aria-selected="true">Cours à venir</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                           aria-selected="false">À Terminer</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                           aria-selected="false">Historique</a>
+                    </li>
+                </ul>
+
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                        <div class="table-responsive-md border rounded p-3 m-auto row align-self-center bg-light">
+                            <table class="table table-bordered text-center ">
+                                <h3>Cours a Venir</h3>
+                                <thead>
+                                <tr>
+                                    <th scope="col">Masterclass</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Début</th>
+                                    <th scope="col">Fin</th>
+                                    <th scope="col">Discipline</th>
+                                    <th scope="col">Niveau</th>
+                                    <th scope="col">Inscrits</th>
+                                    <th scope="col">Editer</th>
+                                    <th scope="col">Supprimer</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for masterclass in masterclasses%}
+                                    {% if masterclass.heuredebut|date() >= 'now'|date()  %}
+                                    <tr>
+                                        <td><a href="{{ path('teacher_learning_rooms_show', {'id': masterclass.id}) }}">{{ masterclass.titre }}</a></td>
+                                        <td>{{ masterclass.heuredebut|date("d/m/Y") }}</td>
+                                        <td>{{ masterclass.heuredebut|date('H:i') }}</td>
+                                        <td>{{ masterclass.heurefin|date('H:i') }}</td>
+                                        <td>{{ masterclass.discipline.titre}}</td>
+                                        <td>{{ masterclass.discipline.niveau}}</td>
+                                        <td>{{ masterclass.students.count }}</td>
+                                        <td><a href="{{ path('teacher_learning_rooms_edit', {'id': masterclass.id}) }}" ><span class="fa fa-edit fa-2x"></span></a></td>
+                                        <td><a href="{{ path('teacher_learning_rooms_delete', {'id': masterclass.id}) }}" ><span class="fa fa-trash fa-2x"></span></a></td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+
+
+
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                        <div class="table-responsive border rounded p-3 m-auto row align-self-center bg-light">
+                            <table class="table table-bordered text-center">
+
+                                <h3>Cours a terminer</h3>
+                                <thead>
+                                <tr>
+                                    <th scope="col">Contact</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Début</th>
+                                    <th scope="col">Fin</th>
+                                    <th scope="col">Discipline</th>
+                                    <th scope="col">Niveau</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for masterclass in masterclasses%}
+                                    {% if masterclass.status == 'À terminer' %}
+                                    <tr>
+                                        <td><a href="{{ path('teacher_learning_rooms_show', {'id': masterclass.id}) }}">{{ masterclass.titre }}</a></td>
+                                        <td>{{ masterclass.heuredebut|date("d/m/Y") }}</td>
+                                        <td>{{ masterclass.heuredebut|date('H:i') }}</td>
+                                        <td>{{ masterclass.heurefin|date('H:i') }}</td>
+                                        <td>{{ masterclass.discipline.titre}}</td>
+                                        <td>{{ masterclass.discipline.niveau}}</td>
+                                        <td><a href="{{ path('teacher_learning_rooms_close', {'id': masterclass.id}) }}" class="btn btn-sm btn-outline-dark">Noter comme terminer</a></td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+
+                        <div class="table-responsive border rounded p-3 m-auto row align-self-center bg-light">
+                            <table class="table table-bordered text-center">
+                                <h3>Historique</h3>
+                                <thead>
+                                <tr>
+                                    <th scope="col">Masterclass</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Début</th>
+                                    <th scope="col">Fin</th>
+                                    <th scope="col">Discipline</th>
+                                    <th scope="col">Niveau</th>
+                                    <th scope="col">Feuille de presence</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for masterclass in masterclasses%}
+
+                                    <tr>
+                                        <td><a href="{{ path('teacher_learning_rooms_show', {'id': masterclass.id}) }}">{{ masterclass.titre }}</td>
+                                        <td>{{ masterclass.heuredebut|date("d/m/Y") }}</td>
+                                        <td>{{ masterclass.heuredebut|date('H:i') }}</td>
+                                        <td>{{ masterclass.heurefin|date('H:i') }}</td>
+                                        <td>{{ masterclass.discipline.titre}}</td>
+                                        <td>{{ masterclass.discipline.niveau}}</td>
+                                        <td><a href="#" >Noter comme terminer</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            {% endblock %}

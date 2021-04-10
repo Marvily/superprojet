@@ -1,0 +1,27 @@
+{% extends 'student/base.html.twig' %}
+
+{% block title %}
+	Modifier Votre profil
+{% endblock %}
+{% block content %}
+	<div class="col-12"><a href="{{ path('student_profile_index') }}" class="btn btn-outline-primary mb-3">Back</a></div>
+
+	<div class="m-auto shadow p-3">
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col">{{ form_row(form.prenom) }}</div>
+			<div class="col">{{ form_row(form.nom) }}</div>
+			<div class="col">{{ form_row(form.email) }}</div>
+		</div>
+		<div class="row">
+			<div class="col">{{ form_row(form.plainPassword.first) }}</div>
+			<div class="col">{{ form_row(form.plainPassword.second) }}</div>
+		</div>
+
+
+		<button class="btn btn-outline-primary">{{ button_label|default('Enregistrer') }}</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
+
+

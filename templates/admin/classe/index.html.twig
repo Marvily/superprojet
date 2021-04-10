@@ -1,0 +1,37 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+    <div class="col-12"><a href="{{ path('admin_classe_new') }}" class="btn btn-outline-primary mb-3">Create new</a></div>
+
+
+<div class="m-auto shadow p-3">
+    <table class="table m-3">
+        <thead>
+            <tr>
+                <th>Instituition</th>
+                <th>Codepostal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classe in classes %}
+            <tr>
+                <td>{{ classe.instituition }}</td>
+                <td>{{ classe.codepostal }}</td>
+                <td>
+                    <a href="{{ path('admin_classe_show', {'id': classe.id}) }}"><span class="fa fa-eye mr-3"></span></a>
+                    <a href="{{ path('admin_classe_edit', {'id': classe.id}) }}"><span class="fa fa-edit"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

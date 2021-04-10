@@ -1,5 +1,23 @@
-controllers:
-    resource: ../../src/Controller/
+admin:
+    resource: ../../src/Controller/Admin/
+    prefix: 'admin/'
+    name_prefix: 'admin_'
+    type: annotation
+
+student:
+    resource: ../../src/Controller/Student/
+    prefix: 'student/'
+    name_prefix: 'student_'
+    type: annotation
+
+teacher:
+    resource: ../../src/Controller/Teacher/
+    prefix: 'teacher/'
+    name_prefix: 'teacher_'
+    type: annotation
+
+constroller:
+    resource: ../../src/Controller/SecurityController.php
     type: annotation
 
 kernel:

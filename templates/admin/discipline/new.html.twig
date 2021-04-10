@@ -1,0 +1,10 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Discipline{% endblock %}
+
+{% block content %}
+    <div class="col-12"> <a href="{{ path('admin_discipline_index') }}" class="btn btn-outline-primary mb-3">Back to list</a></div>
+
+    {{ include('admin/discipline/_form.html.twig') }}
+
+{% endblock %}

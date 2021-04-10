@@ -1,0 +1,9 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Masterclass{% endblock %}
+
+{% block content %}
+    <div class="col-12"> <a href="{{ path('admin_masterclass_index') }}" class="btn btn-outline-primary mb-3">back to list</a></div>
+     {{ include('admin/masterclass/_form.html.twig') }}
+
+{% endblock %}

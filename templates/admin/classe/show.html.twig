@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Classe{% endblock %}
+
+{% block content %}
+<div class="col-12"><a href="{{ path('admin_classe_index') }}" class="btn btn-outline-primary mb-3">Back to list</a></div>
+<div class=" m-auto shadow p-3">
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Instituition</th>
+                <td>{{ classe.instituition }}</td>
+            </tr>
+            <tr>
+                <th>Codepostal</th>
+                <td>{{ classe.codepostal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('admin_classe_edit', {'id': classe.id}) }}" class="btn btn-outline-primary">Edit</a>
+</div>
+
+    <div class="col-12 mt-3"> {{ include('admin/classe/_delete_form.html.twig') }}</div>
+
+{% endblock %}

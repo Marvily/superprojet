@@ -1,0 +1,31 @@
+{% extends 'student/base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="m-auto shadow p-3">
+        <div class="fa fa-user-circle-o fa-4x p-2 m-auto" aria-hidden="true">Student</div>
+        <table class="table text-center">
+
+            <tbody>
+
+            <tr>
+                <th>Prénom</th>
+                <td>{{ app.user.prenom}}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ app.user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+
+
+            </tbody>
+
+        </table>
+        <a href="{{ path('student_profile_update') }}" class="btn btn-outline-danger  m-auto">Modifier</a>
+    </div>
+{% endblock %}

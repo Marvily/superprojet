@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Edit Masterclass{% endblock %}
+
+{% block content %}
+
+    <div class="col-12"><a href="{{ path('admin_masterclass_index') }}" class="btn btn-outline-primary mb-3">back to list</a></div>
+    {{ include('admin/masterclass/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <div class="col-12 mt-3"> {{ include('admin/masterclass/_delete_form.html.twig') }}</div>
+
+{% endblock %}

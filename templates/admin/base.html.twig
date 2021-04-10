@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+                <h1><img src="{{ asset('asset/media/logoblue3.svg') }}" alt="logo" class="logo"></h1>
+                {% if app.user %}
+                    <p>Bonjour <strong>{{ app.user.prenom }}</strong></p>
+                {% endif %}
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="{{ path('admin_home') }}"><span class="fa fa-home mr-3"></span> Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_calendar_index') }}"><span class="fa fa-calendar-check-o mr-3"></span> Agenda</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_masterclass_index') }}"><span class="fa fa-eye mr-3"></span> Masterclass</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_configurations') }}"><span class="fa fa-calendar-check-o mr-3"></span> Configurations</a>
+                    </li>
+
+                </ul>
+
+                <div class="mb-5">
+
+                    <ul class="list-unstyled components mb-5">
+
+                        <li>
+                            <a href="{{ path('admin_profile_index') }}"><span class="fa fa-user-circle-o mr-3"></span> Mon compte</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_logout') }}"><span class="fa fa-sign-out mr-3"></span> Déconnection</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div class="container">
+                <h1>{% block title %}{% endblock %}</h1>
+
+                <div class="card ">
+                    <div class="row no-gutters">
+
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

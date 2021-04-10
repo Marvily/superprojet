@@ -1,0 +1,30 @@
+{% extends 'teacher/base.html.twig' %}
+{% block title %}New Masterclasse{% endblock %}
+{% block content %}
+	<div class="col-12"> <a href="{{ path('teacher_learning_rooms') }}" class="btn btn-outline-primary mb-3">Back</a></div>
+
+	<div class="m-auto shadow p-3">
+
+				{{ form_start(form) }}
+				<div class="row">
+					<div class="col">{{ form_row(form.titre) }}</div>
+				</div>
+				<div class="row">
+					<div class="col">{{ form_row(form.heuredebut) }}</div>
+					<div class="col">{{ form_row(form.heurefin) }}</div>
+				</div>
+				<div class="row">
+					<div class="col">{{ form_row(form.classe) }}</div>
+					<div class="col">{{ form_row(form.discipline) }}</div>
+				</div>
+				<div class="row">
+					<div class="col">{{ form_row(form.webcam) }}</div>
+					<div class="col">{{ form_row(form.students) }}</div>
+				</div>
+
+				<button class="btn btn-outline-primary">{{ button_label|default('Enregistrer') }}</button>
+				{{ form_end(form) }}
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Masterclasses{% endblock %}
+
+{% block content %}
+    <div class="col-12"><a href="{{ path('admin_masterclass_new') }}" class="btn btn-outline-primary mb-3 ">Create new</a></div>
+
+
+<div class="m-auto shadow p-3">
+    <table class="table m-3">
+        <thead>
+            <tr>
+                <th>Formateur</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Debut</th>
+                <th>Fin</th>
+                <th>Webcam</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for masterclass in masterclasses %}
+            <tr>
+                <td>{{ masterclass.professor.prenom }} {{ masterclass.professor.nom }}</td>
+                <td>{{ masterclass.titre }}</td>
+                <td>{{ masterclass.date ? masterclass.date|date('Y-m-d') : '' }}</td>
+                <td>{{ masterclass.heuredebut ? masterclass.heuredebut|date('H:i:s') : '' }}</td>
+                <td>{{ masterclass.heurefin ? masterclass.heurefin|date('H:i:s') : '' }}</td>
+                <td>{{ masterclass.webcam ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('admin_masterclass_show', {'id': masterclass.id}) }}"><span class="fa fa-eye mr-3"></span></a>
+                    <a href="{{ path('admin_masterclass_edit', {'id': masterclass.id}) }}"><span class="fa fa-edit"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

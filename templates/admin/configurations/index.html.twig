@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello ConfigurationsController!{% endblock %}
+
+{% block content %}
+
+                <div class="col text-center m-3">
+                    <a href="{{ path('admin_user_index') }}" class="btn btn-secondary btn-lg m-auto p-4"><img src="{{ asset('asset/media/edit-user-64.png') }}" alt=""><br>Utilisateurs </a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="{{ path('admin_masterclass_index') }}" class="btn btn-secondary btn-lg m-auto p-4"><img src="{{ asset('asset/media/laptop-3-64 (2).png') }}" alt=""><br>Masterclasses </a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="{{ path('admin_classe_index') }}" class="btn btn-secondary btn-lg m-auto p-4"><img src="{{ asset('asset/media/laptop-3-64 (2).png') }}" alt=""><br>Classes </a>
+                </div>
+                <div class="col text-center m-3">
+                    <a href="{{ path('admin_discipline_index') }}" class="btn btn-secondary btn-lg m-auto p-4"><img src="{{ asset('asset/media/laptop-3-64 (2).png') }}" alt=""><br>Discipline </a>
+                </div>
+            </div> </div>
+{% endblock %}

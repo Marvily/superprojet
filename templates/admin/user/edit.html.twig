@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Editer l'utilisateur{% endblock %}
+
+{% block content %}
+    <div class="col-12"> <a href="{{ path('admin_user_index') }}" class="btn btn-outline-primary mb-3">Back to list</a></div>
+    {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+
+    <div class="col-12 mt-3">  {{ include('admin/user/_delete_form.html.twig') }}</div>
+
+
+{% endblock %}

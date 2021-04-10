@@ -1,0 +1,47 @@
+{% extends 'student/base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+{% endblock %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block content %}
+
+
+                <div class="container">
+                    <div id='calendar'></div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            let calendarEl = document.getElementById('calendar');
+                            let calendar = new FullCalendar.Calendar(calendarEl, {
+                                initialView: 'timeGridWeek',
+                                locale:'fr',
+                                timeZone: 'Europe/Paris',
+                                headerToolbar:{
+                                    start:'prev,next today',
+                                    center: 'title',
+                                    end:'dayGridMonth,timeGridWeek'
+
+                                },
+                                events:{{ data|raw }},
+                                editable:true,
+                                eventResizableFromStart:true
+                            });
+
+
+
+                            calendar.render();
+                        });
+
+                    </script>
+                </div>
+
+
+
+
+{% endblock %}
+

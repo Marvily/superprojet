@@ -1,0 +1,83 @@
+{% extends 'teacher/base.html.twig' %}
+{% block title %}Masterclass{% endblock %}
+
+{% block  content%}
+
+	<div class="col-12"> <a href="{{ path('teacher_learning_rooms') }}" class="btn btn-outline-primary mb-3">Back</a></div>
+	<div class="row m-auto shadow p-3">
+		<div class="col">
+			<table class="table shadow p-3">
+				<h6>MasterClass</h6>
+
+				<tbody>
+				<tr>
+					<th>Titre</th>
+					<td>{{ masterclass.titre }}</td>
+				</tr>
+				<tr>
+					<th>Titre</th>
+					<td>{{ masterclass.professor.prenom }} {{ masterclass.professor.nom }}</td>
+				</tr>
+				<tr>
+					<th>Date</th>
+					<td>{{ masterclass.heuredebut ? masterclass.heuredebut|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Heuredebut</th>
+					<td>{{ masterclass.heuredebut ? masterclass.heuredebut|date('H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Heurefin</th>
+					<td>{{ masterclass.heurefin ? masterclass.heurefin|date('H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Webcam</th>
+					<td>{{ masterclass.webcam ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Discipline</th>
+					<td>{{ masterclass.discipline.titre }}</td>
+				</tr>
+				<tr>
+					<th>Niveau</th>
+					<td>{{ masterclass.discipline.niveau }}</td>
+				</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div class="col">
+			<table class="table shadow p-3">
+				<h6>Liste eleves</h6>
+				<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Classe</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for student in masterclass.students %}
+					<tr>
+						<td>{{ student.nom }}</td>
+						<td>{{ student.prenom }}</td>
+						<td>{{ student.classe.instituition }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+		<div class="col-12"> <a href="{{ path('teacher_learning_rooms_edit', {'id': masterclass.id}) }}" class="btn btn-outline-primary">Edit</a></div>
+	</div>
+	<div class="col-12 mt-3">{{ include('teacher/learning_rooms/_delete_form.html.twig') }}</div>
+
+
+{% endblock %}
